@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cmmn:definitions xmlns:dc="http://www.omg.org/spec/CMMN/20151109/DC" xmlns:di="http://www.omg.org/spec/CMMN/20151109/DI" xmlns:cmmndi="http://www.omg.org/spec/CMMN/20151109/CMMNDI" xmlns:cmmn="http://www.omg.org/spec/CMMN/20151109/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Test" targetNamespace="http://bpmn.io/schema/cmmn" exporter="Camunda Modeler" exporterVersion="1.11.3">
+  <cmmn:case id="case">
+    <cmmn:casePlanModel id="CasePlanModel_1" name="A CasePlanModel">
+      <cmmn:planItem id="task_1" definitionRef="HumanTask_04carns" />
+      <cmmn:planItem id="task_3" definitionRef="HumanTask_0uct4j4" />
+      <cmmn:planItem id="task_2" definitionRef="HumanTask_1t6ebjc">
+        <cmmn:itemControl id="PlanItemControl_037u3gt">
+          <cmmn:repetitionRule id="RepetitionRule_0t8a6qn">
+            <cmmn:condition id="Expression_1h627bh">${true}</cmmn:condition>
+          </cmmn:repetitionRule>
+          <cmmn:manualActivationRule id="ManualActivationRule_03gjj63">
+            <cmmn:condition id="Expression_0dnc07k">${true}</cmmn:condition>
+          </cmmn:manualActivationRule>
+        </cmmn:itemControl>
+        <cmmn:entryCriterion id="task_2_entry_criterion" sentryRef="Sentry_0ikmj4p" />
+        <cmmn:exitCriterion id="task_2_exit_criterion" sentryRef="Sentry_1tismaf" />
+      </cmmn:planItem>
+      <cmmn:sentry id="Sentry_1tismaf">
+        <cmmn:planItemOnPart id="PlanItemOnPart_17y1ul1" sourceRef="task_3">        <cmmn:standardEvent>complete</cmmn:standardEvent>
+</cmmn:planItemOnPart>
+      </cmmn:sentry>
+      <cmmn:sentry id="Sentry_0ikmj4p">
+        <cmmn:planItemOnPart id="PlanItemOnPart_0n8o8x8" sourceRef="task_1">        <cmmn:standardEvent>complete</cmmn:standardEvent>
+</cmmn:planItemOnPart>
+      </cmmn:sentry>
+      <cmmn:humanTask id="HumanTask_04carns" name="Task 1" />
+      <cmmn:humanTask id="HumanTask_0uct4j4" name="Task 3" />
+      <cmmn:humanTask id="HumanTask_1t6ebjc" name="Task 2" />
+    </cmmn:casePlanModel>
+  </cmmn:case>
+  <cmmndi:CMMNDI>
+    <cmmndi:CMMNDiagram id="_5a66685b-5f57-4e2f-b1d1-acca4fae04b2">
+      <cmmndi:Size xsi:type="dc:Dimension" width="500" height="500" />
+      <cmmndi:CMMNShape id="DI_CasePlanModel_1" cmmnElementRef="CasePlanModel_1">
+        <dc:Bounds x="285" y="140" width="488" height="312" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNShape id="EntryCriterion_1vyi730_di" cmmnElementRef="task_2_entry_criterion">
+        <dc:Bounds x="608" y="247" width="20" height="28" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNShape id="PlanItem_170cl0j_di" cmmnElementRef="task_2">
+        <dc:Bounds x="618" y="240" width="100" height="80" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNShape id="PlanItem_1k6cwm4_di" cmmnElementRef="task_1">
+        <dc:Bounds x="326" y="187" width="100" height="80" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNShape id="ExitCriterion_0w8tv6i_di" cmmnElementRef="task_2_exit_criterion">
+        <dc:Bounds x="608" y="287" width="20" height="28" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNShape id="PlanItem_1957jor_di" cmmnElementRef="task_3">
+        <dc:Bounds x="326" y="313" width="100" height="80" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNEdge id="PlanItemOnPart_17y1ul1_di" cmmnElementRef="PlanItemOnPart_17y1ul1" targetCMMNElementRef="task_2_exit_criterion" isStandardEventVisible="true">
+        <di:waypoint xsi:type="dc:Point" x="426" y="353" />
+        <di:waypoint xsi:type="dc:Point" x="516" y="353" />
+        <di:waypoint xsi:type="dc:Point" x="516" y="301" />
+        <di:waypoint xsi:type="dc:Point" x="608" y="301" />
+        <cmmndi:CMMNLabel>
+          <dc:Bounds x="461" y="363" width="51" height="13" />
+        </cmmndi:CMMNLabel>
+      </cmmndi:CMMNEdge>
+      <cmmndi:CMMNEdge id="PlanItemOnPart_0n8o8x8_di" cmmnElementRef="PlanItemOnPart_0n8o8x8" targetCMMNElementRef="task_2_entry_criterion" isStandardEventVisible="true">
+        <di:waypoint xsi:type="dc:Point" x="426" y="227" />
+        <di:waypoint xsi:type="dc:Point" x="517" y="227" />
+        <di:waypoint xsi:type="dc:Point" x="517" y="261" />
+        <di:waypoint xsi:type="dc:Point" x="608" y="261" />
+        <cmmndi:CMMNLabel>
+          <dc:Bounds x="459" y="198" width="51" height="13" />
+        </cmmndi:CMMNLabel>
+      </cmmndi:CMMNEdge>
+    </cmmndi:CMMNDiagram>
+  </cmmndi:CMMNDI>
+</cmmn:definitions>
