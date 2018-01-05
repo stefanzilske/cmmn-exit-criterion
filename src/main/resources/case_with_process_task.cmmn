@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cmmn:definitions xmlns:dc="http://www.omg.org/spec/CMMN/20151109/DC" xmlns:di="http://www.omg.org/spec/CMMN/20151109/DI" xmlns:cmmndi="http://www.omg.org/spec/CMMN/20151109/CMMNDI" xmlns:cmmn="http://www.omg.org/spec/CMMN/20151109/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Test" targetNamespace="http://bpmn.io/schema/cmmn" exporter="Camunda Modeler" exporterVersion="1.11.3">
+  <cmmn:case id="case_wirh_process_task">
+    <cmmn:casePlanModel id="CasePlanModel_1" name="A CasePlanModel">
+      <cmmn:planItem id="process_task_wait_for_something" name="Wait for something" definitionRef="ProcessTask_0ztl4zo">
+        <cmmn:exitCriterion id="EntryCriterion_1v2qfci" sentryRef="Sentry_0fbqp55" />
+      </cmmn:planItem>
+      <cmmn:planItem id="human_task_cancel_process" name="Cancel process" definitionRef="HumanTask_1wrey2c" />
+      <cmmn:planItem id="PlanItem_04nvreo" name="Some dummy task to keep the case alive" definitionRef="HumanTask_0ekmolt" />
+      <cmmn:sentry id="Sentry_0fbqp55">
+        <cmmn:planItemOnPart id="PlanItemOnPart_1omlcks" sourceRef="human_task_cancel_process">        <cmmn:standardEvent>complete</cmmn:standardEvent>
+</cmmn:planItemOnPart>
+      </cmmn:sentry>
+      <cmmn:processTask id="ProcessTask_0ztl4zo" processRef="process_wait_for_something" />
+      <cmmn:humanTask id="HumanTask_1wrey2c" />
+      <cmmn:humanTask id="HumanTask_0ekmolt" />
+    </cmmn:casePlanModel>
+  </cmmn:case>
+  <cmmndi:CMMNDI>
+    <cmmndi:CMMNDiagram id="_5a66685b-5f57-4e2f-b1d1-acca4fae04b2">
+      <cmmndi:Size xsi:type="dc:Dimension" width="500" height="500" />
+      <cmmndi:CMMNShape id="DI_CasePlanModel_1" cmmnElementRef="CasePlanModel_1">
+        <dc:Bounds x="250" y="120" width="534" height="389" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNShape id="PlanItem_09mwo74_di" cmmnElementRef="process_task_wait_for_something">
+        <dc:Bounds x="575" y="262" width="100" height="80" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNShape id="PlanItem_0eoohp7_di" cmmnElementRef="human_task_cancel_process">
+        <dc:Bounds x="330" y="262" width="100" height="80" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNEdge id="PlanItemOnPart_1omlcks_di" cmmnElementRef="PlanItemOnPart_1omlcks" targetCMMNElementRef="EntryCriterion_1v2qfci" isStandardEventVisible="true">
+        <di:waypoint xsi:type="dc:Point" x="430" y="302" />
+        <di:waypoint xsi:type="dc:Point" x="565" y="302" />
+        <cmmndi:CMMNLabel>
+          <dc:Bounds x="473" y="278" width="51" height="13" />
+        </cmmndi:CMMNLabel>
+      </cmmndi:CMMNEdge>
+      <cmmndi:CMMNShape id="ExitCriterion_1k62tz1_di" cmmnElementRef="EntryCriterion_1v2qfci">
+        <dc:Bounds x="565" y="288" width="20" height="28" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNShape id="PlanItem_0x1oec8_di" cmmnElementRef="PlanItem_04nvreo">
+        <dc:Bounds x="439" y="372" width="100" height="80" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+    </cmmndi:CMMNDiagram>
+  </cmmndi:CMMNDI>
+</cmmn:definitions>
