@@ -7,13 +7,21 @@
       </cmmn:planItem>
       <cmmn:planItem id="human_task_cancel_process" name="Cancel process" definitionRef="HumanTask_1wrey2c" />
       <cmmn:planItem id="PlanItem_04nvreo" name="Some dummy task to keep the case alive" definitionRef="HumanTask_0ekmolt" />
+      <cmmn:planItem id="human_task_do_something" definitionRef="HumanTask_0eks2g9">
+        <cmmn:exitCriterion id="EntryCriterion_01zgsab" sentryRef="Sentry_091s0pz" />
+      </cmmn:planItem>
       <cmmn:sentry id="Sentry_0fbqp55">
         <cmmn:planItemOnPart id="PlanItemOnPart_1omlcks" sourceRef="human_task_cancel_process">        <cmmn:standardEvent>complete</cmmn:standardEvent>
+</cmmn:planItemOnPart>
+      </cmmn:sentry>
+      <cmmn:sentry id="Sentry_091s0pz">
+        <cmmn:planItemOnPart id="PlanItemOnPart_04nvumu" sourceRef="human_task_cancel_process">        <cmmn:standardEvent>complete</cmmn:standardEvent>
 </cmmn:planItemOnPart>
       </cmmn:sentry>
       <cmmn:processTask id="ProcessTask_0ztl4zo" processRef="process_wait_for_something" />
       <cmmn:humanTask id="HumanTask_1wrey2c" />
       <cmmn:humanTask id="HumanTask_0ekmolt" />
+      <cmmn:humanTask id="HumanTask_0eks2g9" name="Do something" />
     </cmmn:casePlanModel>
   </cmmn:case>
   <cmmndi:CMMNDI>
@@ -44,6 +52,23 @@
       </cmmndi:CMMNShape>
       <cmmndi:CMMNShape id="PlanItem_0x1oec8_di" cmmnElementRef="PlanItem_04nvreo">
         <dc:Bounds x="439" y="372" width="100" height="80" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNEdge id="PlanItemOnPart_04nvumu_di" cmmnElementRef="PlanItemOnPart_04nvumu" targetCMMNElementRef="EntryCriterion_01zgsab" isStandardEventVisible="true">
+        <di:waypoint xsi:type="dc:Point" x="430" y="302" />
+        <di:waypoint xsi:type="dc:Point" x="498" y="302" />
+        <di:waypoint xsi:type="dc:Point" x="498" y="182" />
+        <di:waypoint xsi:type="dc:Point" x="565" y="182" />
+        <cmmndi:CMMNLabel>
+          <dc:Bounds x="442" y="194.5" width="51" height="13" />
+        </cmmndi:CMMNLabel>
+      </cmmndi:CMMNEdge>
+      <cmmndi:CMMNShape id="ExitCriterion_1hkt4a1_di" cmmnElementRef="EntryCriterion_01zgsab">
+        <dc:Bounds x="565" y="169" width="20" height="28" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNShape id="PlanItem_0tb5gs6_di" cmmnElementRef="human_task_do_something">
+        <dc:Bounds x="575" y="145" width="100" height="80" />
         <cmmndi:CMMNLabel />
       </cmmndi:CMMNShape>
     </cmmndi:CMMNDiagram>

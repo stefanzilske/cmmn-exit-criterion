@@ -37,9 +37,14 @@ public class ProcessTerminateTest {
 
         CaseInstance caseInstance = caseService().createCaseInstanceByKey("case_wirh_process_task");
 
-        // both activities should be active
+        // all activities should be active
         assertThat(caseInstance).humanTask("human_task_cancel_process").isActive();
         assertThat(caseInstance).processTask("process_task_wait_for_something").isActive();
+        assertThat(caseInstance).humanTask("human_task_do_something").isActive();
+
+        // task instances should exist
+        assertThat(taskService().createTaskQuery().taskDefinitionKey("human_task_cancel_process").singleResult()).isNotNull();
+        assertThat(taskService().createTaskQuery().taskDefinitionKey("human_task_do_something").singleResult()).isNotNull();
 
         // process instance should be active, too
         ProcessInstance processInstance = runtimeService().createProcessInstanceQuery().processDefinitionKey("process_wait_for_something").singleResult();
@@ -48,11 +53,16 @@ public class ProcessTerminateTest {
         // complete the 'cancel' task
         complete(caseExecution("human_task_cancel_process", caseInstance));
 
-        // both activities should be ended
+        // all activities should be ended
         assertThat(historyService().createHistoricCaseActivityInstanceQuery().caseActivityId("human_task_cancel_process").singleResult().isCompleted()).isTrue();
+        assertThat(historyService().createHistoricCaseActivityInstanceQuery().caseActivityId("human_task_do_something").singleResult().isTerminated()).isTrue();
         assertThat(historyService().createHistoricCaseActivityInstanceQuery().caseActivityId("process_task_wait_for_something").singleResult().isTerminated()).isTrue();
 
-        // task and process instance should be ended, too
+
+        // tasks and process instance should be ended, too
+        assertThat(taskService().createTaskQuery().taskDefinitionKey("human_task_cancel_process").singleResult()).isNull();
+        assertThat(taskService().createTaskQuery().taskDefinitionKey("human_task_do_something").singleResult()).isNull();
+        assertThat(historyService().createHistoricTaskInstanceQuery().taskDefinitionKey("human_task_do_something").singleResult().getDeleteReason()).isEqualTo("terminated");
         assertThat(historyService().createHistoricTaskInstanceQuery().taskDefinitionKey("human_task_cancel_process").singleResult().getDeleteReason()).isEqualTo("completed");
         assertThat(processInstance).isEnded(); // <-- this fails, because the process seems not to be terminated :(
     }
